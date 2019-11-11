@@ -1,0 +1,23 @@
+FROM openknowledge/ckan-dev:2.7
+
+ENV APP_DIR=/srv/app
+ENV SRC_EXTENSIONS_DIR=/srv/app/src_extensions
+
+# Install libxml2
+RUN apk add --no-cache libxml2 \
+        libxslt \
+        libstdc++ \
+        libxml2-dev \
+        libxslt-dev \
+        freetype-dev \
+        libjpeg-turbo-dev \
+        gettext-dev \
+        libpng-dev \
+        openssl
+
+RUN pip install --upgrade pip && pip install -e git+https://github.com/ViderumGlobal/ckanext-opendatani.git#egg=ckanext-opendatani
+
+RUN pip install -e git+https://github.com/ViderumGlobal/ckanext-datarequests.git@7ce234307bb574c54725b81797a83d25a0250516#egg=ckanext-datarequests
+
+#cronjobs
+USER root

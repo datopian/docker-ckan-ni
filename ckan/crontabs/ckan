@@ -1,0 +1,2 @@
+# It will be run under the <filename> user
+*/5 * * * * curl -X POST \$CKAN_SITE_URL/api/3/action/send_email_notifications -H \"Authorization:\$API_KEY\" --data "{}"
